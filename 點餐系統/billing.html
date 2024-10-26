@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>结账页面</title>
+    <style>
+        @font-face {
+    font-family: 'CustomFont2';
+    src: url('字體/荆南麦圆体.otf');
+
+  }
+        body {
+            font-size: 1.5rem;
+            text-align: center;
+            height: 100vh;
+            background-image: linear-gradient(to bottom right, #F9957F, #F2F5D0);
+            padding: 20px;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            font-family: "CustomFont2", sans-serif;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            margin-left: 20vh;
+            
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+
+        }
+
+        .price-summary {
+            text-align: left;
+            width: 40%;
+            margin: 20px 0;
+        }
+
+        button{
+            font-size: 2rem;
+        }
+
+        .back-button {
+            margin-top: 20px;
+            background-color: #F9957F;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .title1{
+            text-align: right;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
+            table {
+                width: 100%;
+                margin-left: 0vh;
+            }
+            .price-summary {
+                width: 100%;
+                text-align: center;
+            }
+            body {
+            font-size: 2.7vh;
+        }        .title1{
+            text-align:center;
+        }
+        button{
+            font-size: 1rem;
+        }
+        }
+    </style>
+</head>
+<body>
+    <div style="width: 100%; background-color: #F2F5D0;">
+        <button style="display: block; left: 0;font-family:'CustomFont2', sans-serif" class="back-button" onclick="goToMenu()">返回点餐</button>
+        <h1 style="display: inline;">確認</h1>
+    </div>
+
+    <h1>结账页面</h1>
+    
+    <div class="container">
+        <div class="title1">
+            <h2>您的订单</h2>            
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>菜品名称</th>
+                        <th>数量</th>
+                        <th>单价</th>
+                        <th>总价</th>
+                    </tr>
+                </thead>
+                <tbody id="orderItems"></tbody>
+            </table>
+        </div>
+        
+        <div class="price-summary">
+            <h2>价格详情</h2>
+            <p>总金额：<span id="totalAmount">0</span> 元</p>
+        </div>
+    </div>
+
+    <button style="font-family:'CustomFont2', sans-serif;" class="back-button" onclick="goToLottery()">抽獎</button>
+
+    <script>
+        function loadOrderData() {
+            const savedCart = localStorage.getItem('cart');
+            const orderItems = document.getElementById('orderItems');
+            let totalAmount = 0;
+            if (savedCart) {
+                const cartData = JSON.parse(savedCart);
+                for (let i = 1; i <= 5; i++) {
+                    const quantity = cartData[`dish${i}`] || 0;
+                    let price = 0;
+                    if (i === 1) price = 30;
+                    else if (i === 2) price = 50;
+                    else if (i === 3) price = 20;
+                    else if (i === 4) price = 25;
+                    else if (i === 5) price = 40;
+                    if (quantity > 0) {
+                        const itemTotal = price * quantity;
+                        orderItems.innerHTML += `
+                            <tr>
+                                <th><img style= "width : 5rem" src="圖片/麻婆豆腐飯.jpg"></th>
+                                <td>菜品${i}</td>
+                                <td>${quantity}</td>
+                                <td>${price}元</td>
+                                <td>${itemTotal}元</td>
+                            </tr>
+                        `;
+                        totalAmount += itemTotal;
+                    }
+                }
+            }
+            document.getElementById('totalAmount').textContent = totalAmount;
+            localStorage.setItem('total1', JSON.stringify(totalAmount));
+        }
+
+        function goToMenu() {
+            window.location.href = "menu.html";
+        }
+
+        function goToLottery() {
+            window.location.href = "lottery.html";
+        }
+
+        window.onload = loadOrderData;
+    </script>
+</body>
+</html>

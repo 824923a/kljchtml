@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>点餐页面</title>
+    <style>
+        @font-face {
+    font-family: 'CustomFont2';
+    src: url('字體/荆南麦圆体.otf');
+
+  }
+        body {
+            text-align: center;
+            background-image: linear-gradient(to bottom right, #F9957F, #F2F5D0);
+            padding: 20px;
+            margin: 0; /* 去掉默认的 body 外边距 */
+            height: 100vh; /* 设置 body 的高度为 100% 可视窗口 */
+            overflow-y: auto; /* 确保在内容溢出时可以上下滚动 */
+            font-family: "CustomFont2", sans-serif;
+            font-size: 1.5rem;
+        }
+
+        html {
+            height: 100%; /* 确保 html 和 body 高度一致 */
+            overflow-y: auto; /* 确保在窗口缩小时页面可上下滚动 */
+        }
+
+        .header {
+            width: 100%;
+            background-color: #F2F5D0;
+            position: fixed;
+            top: 0;
+        }
+        .footer {
+            width: 100%;
+            background-color: #F2F5D0;
+            position: fixed;
+            bottom: 0;
+        }
+        h1 {
+            margin: 0.5rem 0;
+        }
+        .content {
+            display: flex;
+            flex: 1; /* 允许内容部分扩展以填充可用空间 */
+            margin-top: 70px; /* 为了给固定头部留出空间 */
+            overflow: hidden; /* 隐藏溢出内容 */
+        }
+        .menu {
+            width: 50%; /* 设置菜单宽度 */
+            overflow-y: auto; /* 允许垂直滚动 */
+            padding: 10px;
+        }
+        .cart-box {
+            width: 50%; /* 设置购物清单宽度 */
+            overflow-y: auto; /* 允许垂直滚动 */
+            padding: 10px;
+            background-color: #fff;
+            border-left: 2px solid #F9957F; /* 左边框以区分 */
+        }
+        table {
+            width: 100%;
+            margin: auto;
+            border-collapse: collapse;
+            border: 2px solid transparent; /* 设置边框为透明 */
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid transparent; /* 设置单元格边框为透明 */
+            text-align: center;
+        }
+        .item-img {
+            width: 100px; /* 图片大小 */
+            height: 100px; /* 图片大小 */
+        }
+        .cart-toggle {
+
+            left: 0;
+            background-color: #F9957F;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .cart-toggle1 {
+            left: 0;
+            bottom: 0;
+            background-color: #F9957F;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            }
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .quantity-btn {
+            margin: 0 5px;
+        }
+        /* 媒体查询以适应不同屏幕 */
+        @media (max-width: 600px) {
+            .content {
+                flex-direction: column; /* 在较小屏幕上纵向排列 */
+                overflow: hidden; /* 隐藏溢出内容 */
+            }
+            .menu {
+                width: 100%; /* 在手机端全宽 */
+                overflow: hidden; /* 隐藏滚动条 */
+            }
+            .cart-box {
+                width: 100%; /* 在手机端全宽 */
+                position: fixed;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: #fff;
+                border: 2px solid #F9957F;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            }
+            body{
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>点餐系统</h1>
+    </div>
+    <div class="content">
+        <div class="menu">
+
+            
+            <h2>主食</h2>
+            <table>
+                <tr>
+                    <th>图片</th>
+                    <th>名称</th>
+                    <th>数量</th>
+                </tr>
+                <tr>
+                    <td><img class="item-img" src="圖片/麻婆豆腐飯.jpg" alt="菜品1"></td>
+                    <td>菜品1 - 30元</td>
+                    <td>
+                        <div class="quantity-control">
+                            <button class="quantity-btn" onclick="changeQuantity('dish1', -1)">-</button>
+                            <span id="dish1">0</span>
+                            <button class="quantity-btn" onclick="changeQuantity('dish1', 1)">+</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><img class="item-img" src="圖片/麻婆豆腐飯.jpg" alt="菜品2"></td>
+                    <td>菜品2 - 50元</td>
+                    <td>
+                        <div class="quantity-control">
+                            <button class="quantity-btn" onclick="changeQuantity('dish2', -1)">-</button>
+                            <span id="dish2">0</span>
+                            <button class="quantity-btn" onclick="changeQuantity('dish2', 1)">+</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><img class="item-img" src="圖片/麻婆豆腐飯.jpg" alt="菜品3"></td>
+                    <td>菜品3 - 20元</td>
+                    <td>
+                        <div class="quantity-control">
+                            <button class="quantity-btn" onclick="changeQuantity('dish3', -1)">-</button>
+                            <span id="dish3">0</span>
+                            <button class="quantity-btn" onclick="changeQuantity('dish3', 1)">+</button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+            <h2>轻食</h2>
+            <table>
+                <tr>
+                    <th>图片</th>
+                    <th>名称</th>
+                    <th>数量</th>
+                </tr>
+                <tr>
+                    <td><img class="item-img" src="圖片/麻婆豆腐飯.jpg" alt="菜品4"></td>
+                    <td>菜品4 - 25元</td>
+                    <td>
+                        <div class="quantity-control">
+                            <button class="quantity-btn" onclick="changeQuantity('dish4', -1)">-</button>
+                            <span id="dish4">0</span>
+                            <button class="quantity-btn" onclick="changeQuantity('dish4', 1)">+</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><img class="item-img" src="圖片/麻婆豆腐飯.jpg" alt="菜品5"></td>
+                    <td>菜品5 - 40元</td>
+                    <td>
+                        <div class="quantity-control">
+                            <button class="quantity-btn" onclick="changeQuantity('dish5', -1)">-</button>
+                            <span id="dish5">0</span>
+                            <button class="quantity-btn" onclick="changeQuantity('dish5', 1)">+</button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+            <p>总价：<span id="totalPrice">0</span> 元</p>
+
+        </div>
+
+        <div class="cart-box" id="cartBox">
+            <h2>點菜清單</h2>
+            <div id="cartItems"></div>
+            <p>总价：<span id="cartTotalPrice">0</span> 元</p>
+        </div>
+    </div>
+    <div class="footer">
+        <button class="cart-toggle1" onclick="toggleCart()">點菜清單</button>
+        <button class="cart-toggle" onclick="proceedToBilling()">付款</button>
+    </div>
+
+
+
+    <script>
+        let totalPrice = 0;
+        const cart = {};
+
+        function changeQuantity(dishId, change) {
+            const currentQuantity = parseInt(document.getElementById(dishId).textContent);
+            const newQuantity = Math.max(currentQuantity + change, 0);
+            document.getElementById(dishId).textContent = newQuantity;
+
+            // 更新购物清单和总价
+            updateCartDisplay();
+        }
+
+        function updateCartDisplay() {
+            const cartItemsDiv = document.getElementById('cartItems');
+            cartItemsDiv.innerHTML = '';
+            totalPrice = 0; // 重置总价
+            for (let i = 1; i <= 5; i++) {
+                const quantity = parseInt(document.getElementById(`dish${i}`).textContent);
+                let price = 0;
+                if (i === 1) price = 30;
+                if (i === 2) price = 50;
+                if (i === 3) price = 20;
+                if (i === 4) price = 25;
+                if (i === 5) price = 40;
+
+                if (quantity > 0) {
+                    const itemTotal = price * quantity;
+                    cartItemsDiv.innerHTML += `<p>菜品${i} - ${quantity}件 - ${itemTotal}元 </p>`;
+                    totalPrice += itemTotal; // 累加总价
+                }
+            }
+
+            // 更新总价显示
+            document.getElementById('cartTotalPrice').textContent = totalPrice;
+            document.getElementById('totalPrice').textContent = totalPrice;
+            // 存储订单数据到 localStorage
+            localStorage.setItem('cart', JSON.stringify(getCartData()));
+        }
+
+        function getCartData() {
+            const cartData = {};
+            for (let i = 1; i <= 5; i++) {
+                const quantity = parseInt(document.getElementById(`dish${i}`).textContent);
+                if (quantity > 0) {
+                    cartData[`dish${i}`] = quantity;
+                }
+            }
+            return cartData;
+        }
+
+        function proceedToBilling() {
+            window.location.href = "billing.html"; // 跳转到结账页面
+        }
+
+        function toggleCart() {
+            const cartBox = document.getElementById('cartBox');
+            cartBox.style.display = (cartBox.style.display === 'none' || cartBox.style.display === '') ? 'block' : 'none';
+        }
+
+        function loadCartData() {
+            const savedCart = localStorage.getItem('cart');
+            if (savedCart) {
+                const cartData = JSON.parse(savedCart);
+                for (let key in cartData) {
+                    if (cartData.hasOwnProperty(key)) {
+                        document.getElementById(key).textContent = cartData[key];
+                    }
+                }
+                updateCartDisplay(); // 更新购物车显示
+            }
+        }
+
+        // 页面加载时加载购物车数据
+        window.onload = loadCartData;
+    </script>
+</body>
+</html>

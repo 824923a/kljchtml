@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>結算頁面</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="screen">
+        <h1>結算</h1>
+        <div id="order-summary"></div>
+        <p>總計: <span id="checkout-total"></span></p>
+        <button onclick="confirmPayment()">立即支付</button>
+    </div>
+
+    <script>
+        const cart = JSON.parse(localStorage.getItem('cart'));
+        const totalPrice = localStorage.getItem('totalPrice');
+        const orderSummary = document.getElementById('order-summary');
+        orderSummary.innerHTML = cart.map(({ item, price }) => `<p>${item}: ￥${price}</p>`).join('');
+        document.getElementById('checkout-total').innerText = `￥${totalPrice}`;
+
+        function confirmPayment() {
+            window.location.href = 'lottery.html'; // 跳轉到抽獎頁面
+        }
+    </script>
+</body>
+</html>
