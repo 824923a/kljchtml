@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>响应式页脚示例</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column; /* 使内容垂直排列 */
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* 使内容居中 */
+            margin: 0;
+            background-color: #f0f0f0; /* 背景颜色 */
+        }
+        .image-container {
+            position: relative; /* 让阴影相对于容器 */
+            overflow: hidden; /* 防止阴影超出边界 */
+        }
+        img {
+            display: block; /* 去掉底部空隙 */
+            max-width: 100%; /* 使图片自适应容器宽度 */
+            height: auto; /* 保持纵横比 */
+            border-radius: 8px; /* 圆角效果 */
+        }
+        .shadow {
+            position: absolute;
+            bottom: 0; /* 将阴影定位在图片底部 */
+            left: 0;
+            right: 0;
+            height: 300px; /* 阴影的高度 */
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.7)); /* 渐变阴影由浅到深，深色加深 */
+            pointer-events: none; /* 允许点击穿透阴影 */
+        }
+    </style>
+</head>
+<body>
+    <h1>欢迎来到我的网站</h1>
+    <p>这是一个基本的 HTML 文档示例。</p>
+
+    <div class="image-container">
+        <img src="123/WSC2024_Conference_HR_0117.jpg" alt="示例图片">
+        <div class="shadow"></div>
+    </div>
+    
+</body>
+</html>
