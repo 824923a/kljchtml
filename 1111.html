@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>响应式页脚示例</title>
+    <style>
+        /* footer的css */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            
+        }
+        footer {
+            background-color:  #143661; /* 深蓝色背景 */
+            color: white;
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap; /* 允许换行 */
+            justify-content: center; /* 水平居中 */
+        }
+        .footer-column {
+            display: flex;
+            flex-direction: column; /* 列布局 */
+            margin: 5px; /* 每列之间的间距 */
+            min-width: 150px; /* 最小宽度，防止过小 */
+            flex: 1 1 20%; /* 在大屏幕上占用约 20% 的宽度 */
+        }
+        .footer-item {
+            text-align: left; /* 文本左对齐 */
+            margin: 5px 0; /* 每个项之间的间距 */
+        }
+        @media (max-width: 600px) {
+            .footer-column {
+                flex: 1 1 45%; /* 手机屏幕上每列占 45% 宽度 */
+            }
+        }
+        /* 搜索*的css*/
+        .search-container {
+            display: flex; /* 默认使用行布局 */
+            flex-direction: row; /* 行布局 */
+            align-items: center; /* 垂直居中 */
+            justify-content: center; /* 水平居中 */
+        }
+        .search-input {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 200px; /* 输入框宽度 */
+            margin-right: 5px; /* 输入框与按钮之间的间距 */
+        }
+        .search-button {
+            padding: 10px 15px;
+            font-size: 16px;
+            color: white;
+            background-color: #c32e67; /* 粉色背景 */
+            border: 2px solid black; /* 添加黑色边框 */
+            border-radius: 4px;
+            cursor: pointer; /* 鼠标悬停时光标变成手型 */
+            transition: background-color 300ms, color 300ms; /* 添加过渡效果 */
+        }
+        .search-button:hover {
+            background-color: #FFFFFF; /* 悬停时背景变为白色 */
+            color: black; /* 悬停时文字变为黑色 */
+        }
+        @media (max-width: 600px) {
+            .search-container {
+                flex-direction: column; /* 切换为列布局 */
+                align-items: stretch; /* 使输入框和按钮宽度一致 */
+                justify-content: center; /* 水平居中 */
+            }
+            .search-input, .search-button {
+                width: 100%; /* 在手机上宽度占满 */
+                margin-right: 0; /* 清除右边距 */
+                margin-bottom: 5px; /* 按钮与输入框的间距 */
+            }
+        }
+
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+    <h1>欢迎来到我的网站</h1>
+    <p>这是一个基本的 HTML 文档示例。</p>
+
+    <div class="search-container">
+        <input type="text" class="search-input" placeholder="search">
+        <button class="search-button">Search</button>
+    </div>
+
+
+
+
+    <footer>
+        <div class="footer-column">
+            <div class="footer-item"><b>About us</b></div>
+            <div class="footer-item">Board</div>
+            <div class="footer-item">Secretariat</div>
+            <div class="footer-item">Vision and mission</div>
+        </div>
+        <div class="footer-column">
+            <div class="footer-item"><b>What we do</b></div>
+            <div class="footer-item">Competitions</div>
+            <div class="footer-item">Projects</div>
+            <div class="footer-item">Conference</div>
+            <div class="footer-item">Campaigns</div>
+        </div>
+        <div class="footer-column">
+            <div class="footer-item"><b>Latest</b></div>
+            <div class="footer-item">News</div>
+            <div class="footer-item">Events</div>
+            <div class="footer-item">Resources</div>
+        </div>
+        <div class="footer-column">
+            <div class="footer-item"><b>Info for</b></div>
+            <div class="footer-item">Members</div>
+            <div class="footer-item">Partners</div>
+            <div class="footer-item">Journalists</div>
+        </div>
+        <div class="footer-column">
+            <div class="footer-item">2024, WorldSkills International. Privacy Terms Contact</div>
+        </div>   
+    </footer>
+</body>
+</html>
+
+
+
+
+
+
