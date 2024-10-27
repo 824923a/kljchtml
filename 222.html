@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>七日天气预报</title>
+    <title>天气预报</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -26,7 +27,7 @@
             display: flex;
             justify-content: space-around;
             background-color: white;
-            padding: 15px 0;
+            padding: 20px 0; /* 增加导航栏高度 */
             position: fixed;
             bottom: 0;
             width: 100%;
@@ -40,11 +41,16 @@
             color: #007BFF;
             font-size: 16px;
             cursor: pointer;
+            display: flex;
+            align-items: center;
             transition: color 0.3s, transform 0.3s;
         }
         nav button:hover {
             color: #0056b3;
             transform: scale(1.05);
+        }
+        nav i {
+            margin-right: 5px; /* 图标与文字之间的间距 */
         }
         .container {
             display: none;
@@ -168,12 +174,32 @@
                 transform: scale(1.2);
             }
         }
+        /* 烟花样式 */
+        .firework {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: radial-gradient(circle, #ff0 0%, #ff0 40%, transparent 100%);
+            border-radius: 50%;
+            animation: explode 1s forwards;
+        }
+
+        @keyframes explode {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(5);
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>七日天气预报</h1>
+    <h1>天气预报</h1>
 </header>
 
 <div id="weatherInterface" class="container">
@@ -192,8 +218,8 @@
 </div>
 
 <nav>
-    <button onclick="showWeather()">天气预报</button>
-    <button onclick="showLocation()">设置位置</button>
+    <button onclick="showWeather()"><i class="fas fa-sun"></i>天气预报</button>
+    <button onclick="showLocation()"><i class="fas fa-map-marker-alt"></i>设置位置</button>
 </nav>
 
 <script>
@@ -411,15 +437,40 @@
         displayWeather(weatherData, currentCity);
         showWeather(); // 显示天气界面
     };
+
     async function switchCity() {
-    const city = document.getElementById('city').value;
-    if (city && city !== currentCity) {
-        currentCity = city;
-        weatherData = await fetchWeather(currentCity); // 获取新城市的天气数据
-        displayWeather(weatherData, currentCity);
-        showWeather(); // 自动跳回天气预报界面
+        const city = document.getElementById('city').value;
+        if (city && city !== currentCity) {
+            currentCity = city;
+            weatherData = await fetchWeather(currentCity); // 获取新城市的天气数据
+            displayWeather(weatherData, currentCity);
+            showWeather(); // 自动跳回天气预报界面
+        }
     }
-}
+
+    function hideWeatherDetails() {
+        const weatherDetails = document.getElementById('weatherDetails');
+        weatherDetails.style.display = 'none'; 
+        stopRainEffect(); 
+        stopCloudEffect(); 
+        stopSunshineEffect(); 
+        createFireworks(); // 添加烟花效果
+    }
+
+    function createFireworks() {
+        for (let i = 0; i < 10; i++) {
+            const firework = document.createElement('div');
+            firework.className = 'firework';
+            firework.style.left = Math.random() * 100 + 'vw'; // 随机位置
+            firework.style.bottom = Math.random() * 30 + 'vh'; // 随机高度
+            document.body.appendChild(firework);
+            
+            // 在动画结束后移除烟花元素
+            setTimeout(() => {
+                firework.remove();
+            }, 1000); 
+        }
+    }
 </script>
 
 </body>
