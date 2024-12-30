@@ -1,0 +1,7 @@
+[{"location":"Hong Kong","date":"2024-10-27","status":"Sunny","lower_temperature":23,"upper_temperature":28},
+{"location":"Hong Kong","date":"2024-10-28","status":"Sunny","lower_temperature":24,"upper_temperature":30},
+{"location":"Hong Kong","date":"2024-10-29","status":"Cloudy","lower_temperature":25,"upper_temperature":31},
+{"location":"Hong Kong","date":"2024-10-30","status":"Rainy","lower_temperature":22,"upper_temperature":29},
+{"location":"Hong Kong","date":"2024-10-31","status":"Sunny","lower_temperature":24,"upper_temperature":27},
+{"location":"Hong Kong","date":"2024-11-01","status":"Cloudy","lower_temperature":22,"upper_temperature":27},
+{"location":"Hong Kong","date":"2024-11-02","status":"Rainy","lower_temperature":23,"upper_temperature":27}]

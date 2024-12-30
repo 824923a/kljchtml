@@ -1,0 +1,7 @@
+[    {"location":"Beijing","date":"2024-10-27","status":"Sunny","lower_temperature":9,"upper_temperature":19},
+{"location":"Beijing","date":"2024-10-28","status":"Sunny","lower_temperature":10,"upper_temperature":20},
+{"location":"Beijing","date":"2024-10-29","status":"Cloudy","lower_temperature":11,"upper_temperature":22},
+{"location":"Beijing","date":"2024-10-30","status":"Rainy","lower_temperature":8,"upper_temperature":18},
+{"location":"Beijing","date":"2024-10-31","status":"Sunny","lower_temperature":9,"upper_temperature":19},
+{"location":"Beijing","date":"2024-11-01","status":"Cloudy","lower_temperature":8,"upper_temperature":17},
+{"location":"Beijing","date":"2024-11-02","status":"Rainy","lower_temperature":7,"upper_temperature":16}]

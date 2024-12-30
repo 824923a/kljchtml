@@ -1,0 +1,7 @@
+[{"location":"Helsinki","date":"2024-10-27","status":"Sunny","lower_temperature":7,"upper_temperature":15},
+{"location":"Helsinki","date":"2024-10-28","status":"Sunny","lower_temperature":8,"upper_temperature":16},
+{"location":"Helsinki","date":"2024-10-29","status":"Cloudy","lower_temperature":9,"upper_temperature":17},
+{"location":"Helsinki","date":"2024-10-30","status":"Rainy","lower_temperature":6,"upper_temperature":13},
+{"location":"Helsinki","date":"2024-10-31","status":"Sunny","lower_temperature":7,"upper_temperature":15},
+{"location":"Helsinki","date":"2024-11-01","status":"Cloudy","lower_temperature":6,"upper_temperature":14},
+{"location":"Helsinki","date":"2024-11-02","status":"Rainy","lower_temperature":5,"upper_temperature":12}]

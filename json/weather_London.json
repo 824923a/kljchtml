@@ -1,0 +1,7 @@
+    [{"location":"London","date":"2024-10-27","status":"Cloudy","lower_temperature":12,"upper_temperature":19},
+    {"location":"London","date":"2024-10-28","status":"Sunny","lower_temperature":14,"upper_temperature":21},
+    {"location":"London","date":"2024-10-29","status":"Cloudy","lower_temperature":15,"upper_temperature":23},
+    {"location":"London","date":"2024-10-30","status":"Rainy","lower_temperature":11,"upper_temperature":18},
+    {"location":"London","date":"2024-10-31","status":"Sunny","lower_temperature":13,"upper_temperature":20},
+    {"location":"London","date":"2024-11-01","status":"Cloudy","lower_temperature":12,"upper_temperature":19},
+    {"location":"London","date":"2024-11-02","status":"Rainy","lower_temperature":11,"upper_temperature":17}]
